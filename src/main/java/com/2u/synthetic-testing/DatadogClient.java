@@ -12,13 +12,17 @@ public class DatadogClient {
 
     private static final long MAX_ALLOWABLE_TIME_MS = 60 * 1000; // 1 minute
 
-    // Load API key and App key from environment variables
-    private static final String API_KEY = System.getenv("DATADOG_API_KEY");
-    private static final String APP_KEY = System.getenv("DATADOG_APP_KEY");
+    private String apiKey;
+    private String appKey;
+
+    public DatadogClient(String apiKey, String appKey) {
+        this.apiKey = apiKey;
+        this.appKey = appKey;
+    }
 
     /* ******************* Datadog API actions *****************/
 
-    public static String triggerSyntheticTests(SyntheticTestRequest[] testRequests) throws Exception {
+    public String triggerSyntheticTests(SyntheticTestRequest[] testRequests) throws Exception {
         /*
         ** Trigger a synthetic test run consisting of one or more tests. At best this queues a request; the actual run
         ** will occur later, if at all. The request will just be dropped if testing is paused
@@ -31,12 +35,12 @@ public class DatadogClient {
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         // Set the request method and headers
-        System.out.println("API Key: " + API_KEY);
-        System.out.println("Application Key: " + APP_KEY);
+        System.out.println("API Key: " + apiKey);
+        System.out.println("Application Key: " + appKey);
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json");
-        con.setRequestProperty("DD-API-KEY", API_KEY);
-        con.setRequestProperty("DD-APPLICATION-KEY", APP_KEY);
+        con.setRequestProperty("DD-API-KEY", apiKey);
+        con.setRequestProperty("DD-APPLICATION-KEY", appKey);
 
         // Send the request with a request body indicating the specific tests to be run
         String jsonRequestBody = String.format("{\"tests\":[{\"public_id\":\"%s\"}]}", testRequests[0].testId);
@@ -59,7 +63,7 @@ public class DatadogClient {
         return DatadogClient.jsonGetTestRunId(responseBody.toString());
     }
 
-    public static String getTestingResults(String testRunId, SyntheticTestRequest[] testRequests) throws Exception {
+    public String getTestingResults(String testRunId, SyntheticTestRequest[] testRequests) throws Exception {
         String jsonTestRunResults = null;
         for (SyntheticTestRequest request : testRequests) {
             jsonTestRunResults = waitForTestOnTestRunResult(testRunId, request.testId);
@@ -72,7 +76,7 @@ public class DatadogClient {
    // across all test runs that have run the test. This forces us to make extra calls
    //
    // TBD: see whether there's another Datadog API call that actually does what we want
-   private static String waitForTestOnTestRunResult(String testRunId, String testId) throws Exception {
+   private String waitForTestOnTestRunResult(String testRunId, String testId) throws Exception {
         /*
         ** Poll for test run completion subject to a maximum allowable time
         **
@@ -91,7 +95,7 @@ public class DatadogClient {
         return jsonTestOnTestRunResult;
     }
 
-    private static String getJsonTestOnTestRunResult(String testRunId, String testId) throws Exception {
+    private String getJsonTestOnTestRunResult(String testRunId, String testId) throws Exception {
         /*
         ** This method is called in a polling loop and returns a null response if the test run
         ** has not yet completed; otherwise, it returns a json structure with all test results in it
@@ -104,8 +108,8 @@ public class DatadogClient {
         // Set the request method and headers. We don't specify which test we care about, as this
         // Datadog API returns the results for all tests run in the test run
         con.setRequestMethod("GET");
-        con.setRequestProperty("DD-API-KEY", API_KEY);
-        con.setRequestProperty("DD-APPLICATION-KEY", APP_KEY);
+        con.setRequestProperty("DD-API-KEY", apiKey);
+        con.setRequestProperty("DD-APPLICATION-KEY", appKey);
 
         // Read the response
         int responseCode = con.getResponseCode();
