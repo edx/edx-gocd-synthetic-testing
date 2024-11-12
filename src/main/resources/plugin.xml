@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<go-plugin id="synthetic-testing" version="1">
+<go-plugin id="com.2u.synthetic-testing" version="1">
     <about>
         <name>GoCD Synthetic Testing Plugin</name>
-        <version>0.1.3</version>
+        <version>0.1.4</version>
         <target-go-version>20.1.0</target-go-version>
         <description>Plugin to run release tests on Datadog</description>
         <vendor>
