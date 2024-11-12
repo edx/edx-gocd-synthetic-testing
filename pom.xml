@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.2u</groupId>
     <artifactId>synthetic-testing</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.2</version>
     <packaging>jar</packaging>
     <description>GoCD stage integration with Datadog synthetic testing</description>
     <url>https://github.com/edx/edx-gocd-synthetic-testing</url>
@@ -11,10 +11,10 @@
         <developer>
             <id>bszabo</id>
             <name>Bernard Szabo</name>
-            <url>https://github.com/bszabo</url>
+            <url>https://github.com/edx/edx-gocd-synthetic-testing</url>
         </developer>
     </developers>
-    <inceptionYear>2014</inceptionYear>
+    <inceptionYear>2024</inceptionYear>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
