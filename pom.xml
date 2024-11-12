@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.2u</groupId>
     <artifactId>synthetic-testing</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
     <packaging>jar</packaging>
     <description>GoCD stage integration with Datadog synthetic testing</description>
     <url>https://github.com/edx/edx-gocd-synthetic-testing</url>
