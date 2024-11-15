@@ -1,4 +1,7 @@
 # Generating the jar file
+
+version 1.0.1
+
 1. Install maven (I've used version 3.9.3)
 2. At the repo's root folder, run "mvn clean package"
 3. Find the synthetic-testing-0.1.0.jar file in the /target folder under the repo root folder
