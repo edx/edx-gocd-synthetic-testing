@@ -1,6 +1,6 @@
 # Generating the jar file
 
-version 1.0.1
+version 1.0.2
 
 1. Install maven (I've used version 3.9.3)
 2. At the repo's root folder, run "mvn clean package"
