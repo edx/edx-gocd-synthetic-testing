@@ -1,0 +1,43 @@
+format_version: 10
+pipelines:
+  release_tests:
+    group: synthetic_testing
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    secure_variables:
+      DATADOG_API_KEY: AES:HW23CeCfgdBIZjgqX2GcNQ==:6BWHun00t+JdzZ6/qPuNjo34ov5ch7BM5I/nqTjhgoH7WYnYc/kCmJzKE66VgrqW
+      DATADOG_APP_KEY: AES:CmXeb/HLv5whaaV/vwEaag==:SUK7PIbfR4pU4ZJCzbVJSTg8hxF1AancZrjllJ+X0M6k5Ccg0yTTn/iRHmtlrtuy
+    materials:
+      git-1eda989:
+        git: https://github.com/edx/edx-gocd-synthetic-testing.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+    stages:
+    - release_tests:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          run_release_tests:
+            timeout: 0
+            elastic_profile_id: legacy-default
+            tasks:
+            - exec:
+                arguments:
+                - Hello, world
+                command: echo
+                run_if: passed
+          run_release_tests_imported:
+            timeout: 0
+            elastic_profile_id: legacy-default
+            tasks:
+            - exec:
+                arguments:
+                - Hello, Bernard
+                command: echo
+                run_if: passed
