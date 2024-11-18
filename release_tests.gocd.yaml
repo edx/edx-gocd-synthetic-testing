@@ -14,7 +14,7 @@ pipelines:
         type: configrepo
         shallow_clone: false
         auto_update: true
-        branch: master
+        branch: to-python
     stages:
     - release_tests:
         fetch_materials: true
