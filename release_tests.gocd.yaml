@@ -1,7 +1,7 @@
 format_version: 10
 pipelines:
-  release_tests:
-    group: synthetic_testing
+  release_tests_3:
+    group: synthetic_testing_3
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
@@ -16,7 +16,7 @@ pipelines:
         auto_update: true
         branch: to-python
     stages:
-    - release_tests_2:
+    - release_tests_3:
         fetch_materials: true
         keep_artifacts: false
         clean_workspace: false
