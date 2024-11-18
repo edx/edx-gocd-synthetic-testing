@@ -11,6 +11,7 @@ pipelines:
     materials:
       git-1eda989:
         git: https://github.com/edx/edx-gocd-synthetic-testing.git
+        type: configrepo
         shallow_clone: false
         auto_update: true
         branch: master
