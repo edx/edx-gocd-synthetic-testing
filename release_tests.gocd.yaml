@@ -16,7 +16,7 @@ pipelines:
         auto_update: true
         branch: to-python
     stages:
-    - release_tests:
+    - release_tests_2:
         fetch_materials: true
         keep_artifacts: false
         clean_workspace: false
