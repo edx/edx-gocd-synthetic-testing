@@ -15,7 +15,7 @@ pipelines:
         shallow_clone: false
         auto_update: true
         branch: to-python
-        destination: /
+        destination: synthetic-testing
       tubular:
         git: https://github.com/edx/tubular
         blacklist:
