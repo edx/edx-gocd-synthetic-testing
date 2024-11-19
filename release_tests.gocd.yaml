@@ -15,6 +15,7 @@ pipelines:
         shallow_clone: false
         auto_update: true
         branch: to-python
+        destination: "/"
       tubular:
         git: https://github.com/edx/tubular
         blacklist:
