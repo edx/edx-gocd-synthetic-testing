@@ -15,6 +15,14 @@ pipelines:
         shallow_clone: false
         auto_update: true
         branch: to-python
+      tubular:
+        git: https://github.com/edx/tubular
+        blacklist:
+          - '**/*'
+        shallow_clone: true
+        auto_update: true
+        branch: bszabo/synthetic-testing
+        destination: tubular
     stages:
     - release_tests_3:
         fetch_materials: true
@@ -37,8 +45,12 @@ pipelines:
             timeout: 0
             elastic_profile_id: legacy-default
             tasks:
-            - exec:
                 arguments:
-                - Hello, Bernard
-                command: echo
-                run_if: passed
+                - -c
+                - 'alert_opsgenie.py --auth_token $OPSGENIE_API_KEY --alias "gocd-edxapp-pipeline-failure-$GO_PIPELINE_NAME-$GO_STAGE_NAME-$GO_JOB_NAME"
+                  --message "[GoCD] edxapp build failed on $GO_PIPELINE_NAME/$GO_STAGE_NAME/$GO_JOB_NAME" --description "Build triggered
+                  by $GO_TRIGGER_USER failed at stage $GO_STAGE_NAME on job $GO_JOB_NAME:
+                  https://gocd.tools.edx.org/go/pipelines/$GO_PIPELINE_NAME/$GO_PIPELINE_COUNTER/$GO_STAGE_NAME/$GO_STAGE_COUNTER"'
+                command: /bin/bash
+                working_directory: tubular
+                run_if: failed
