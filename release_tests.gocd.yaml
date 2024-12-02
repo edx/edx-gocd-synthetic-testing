@@ -48,6 +48,8 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                - Hello, Bernard
-                command: echo
+                - -c
+                - 'dd_synthetic_tests.py --enable-automated-rollbacks'
+                command: /bin/bash
+                working_directory: tubular
                 run_if: passed
