@@ -1,7 +1,7 @@
 format_version: 10
 pipelines:
   release_tests_1:
-    group: synthetic_testing_1
+    group: st_1
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
