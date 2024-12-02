@@ -1,7 +1,7 @@
-                              format_version: 10
+format_version: 10
 pipelines:
-  release_tests_3:
-    group: synthetic_testing_3
+  release_tests_1:
+    group: synthetic_testing_1
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
@@ -25,7 +25,7 @@ pipelines:
         branch: bszabo/synthetic-testing
         destination: tubular
     stages:
-    - release_tests_3:
+    - release_tests_1:
         fetch_materials: true
         keep_artifacts: false
         clean_workspace: false
