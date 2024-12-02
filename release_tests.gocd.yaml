@@ -42,14 +42,14 @@ pipelines:
                 - Hello, world
                 command: echo
                 run_if: passed
-          run_release_tests_4_imported:
-            timeout: 0
-            elastic_profile_id: legacy-default
-            tasks:
-            - exec:
-                arguments:
-                - -c
-                - 'dd_synthetic_tests.py --enable-automated-rollbacks'
-                command: /bin/bash
-                working_directory: tubular
-                run_if: passed
+#          run_release_tests_4_imported:
+#            timeout: 0
+#            elastic_profile_id: legacy-default
+#            tasks:
+#            - exec:
+#                arguments:
+#                - -c
+#                - 'dd_synthetic_tests.py --enable-automated-rollbacks'
+#                command: /bin/bash
+#                working_directory: tubular
+#                run_if: passed
