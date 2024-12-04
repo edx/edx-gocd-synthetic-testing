@@ -58,6 +58,7 @@ pipelines:
             - exec:
                 arguments:
                 - -c
+                - python3
                 - 'dd_synthetic_tests.py --enable-automated-rollbacks'
                 command: /bin/bash
                 working_directory: tubular
