@@ -51,3 +51,14 @@ pipelines:
                 - Hello, Bernard, from job 2
                 command: echo
                 run_if: passed
+          run_release_tests_job3:
+            timeout: 0
+            elastic_profile_id: legacy-default
+            tasks:
+            - exec:
+                arguments:
+                - -c
+                - 'dd_synthetic_tests.py --enable-automated-rollbacks'
+                command: /bin/bash
+                working_directory: tubular
+                run_if: passed
