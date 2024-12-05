@@ -54,16 +54,11 @@ pipelines:
           run_release_tests_job3:
             timeout: 0
             elastic_profile_id: legacy-default
-            artifacts:
-              - bis_artifact
-                source: bis_artifact.log
-                destination: cruise-output/bis_artifact.log
             tasks:
             - exec:
                 arguments:
-                - -c
-                - python3
-                - 'dd_synthetic_tests.py --enable-automated-rollbacks'
-                command: /bin/bash
+                - ./tubular/scripts/dd_synthetic_tests.py
+                - '--enable-automated-rollbacks'
+                command: python3
                 working_directory: tubular
                 run_if: passed
