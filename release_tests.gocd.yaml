@@ -48,7 +48,8 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                - -c pwd
+                - -c
+                - pwd
                 command: /bin/bash
                 run_if: passed
           run_release_tests_job3:
