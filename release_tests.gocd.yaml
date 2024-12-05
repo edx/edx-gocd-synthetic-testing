@@ -48,8 +48,8 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                - Hello, Bernard, from job 2
-                command: echo
+                - "-c pwd"
+                command: /bin/bash
                 run_if: passed
           run_release_tests_job3:
             timeout: 0
