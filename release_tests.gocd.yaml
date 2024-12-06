@@ -5,9 +5,6 @@ pipelines:
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
-    secure_variables:
-      DATADOG_API_KEY: AES:HW23CeCfgdBIZjgqX2GcNQ==:6BWHun00t+JdzZ6/qPuNjo34ov5ch7BM5I/nqTjhgoH7WYnYc/kCmJzKE66VgrqW
-      DATADOG_APP_KEY: AES:CmXeb/HLv5whaaV/vwEaag==:SUK7PIbfR4pU4ZJCzbVJSTg8hxF1AancZrjllJ+X0M6k5Ccg0yTTn/iRHmtlrtuy
     materials:
       git-1eda989:
         git: https://github.com/edx/edx-gocd-synthetic-testing.git
@@ -24,6 +21,9 @@ pipelines:
         auto_update: true
         branch: bszabo/synthetic-testing
         destination: tubular
+    environment_variables:
+      DATADOG_APP_KEY: "{{SECRET:[gocd-pipelines-sre-managed][DATADOG_APP_KEY]}}"
+      DATADOG_API_KEY: "{{SECRET:[gocd-pipelines-sre-managed][DATADOG_API_KEY]}}"
     stages:
     - release_tests_1_stage:
         fetch_materials: true
