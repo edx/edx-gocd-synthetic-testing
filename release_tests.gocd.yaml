@@ -25,8 +25,8 @@ pipelines:
       DATADOG_APP_KEY: "{{SECRET:[gocd-pipelines-sre-managed][DATADOG_APP_KEY]}}"
       DATADOG_API_KEY: "{{SECRET:[gocd-pipelines-sre-managed][DATADOG_API_KEY]}}"
       TESTS_TO_RUN:
-      - "name": "Hello, world test"
-        "id": "sad-hqu-h33"
+        - "name": "Hello, world test"
+          "id": "sad-hqu-h33"
     stages:
     - release_tests_1_stage:
         fetch_materials: true
