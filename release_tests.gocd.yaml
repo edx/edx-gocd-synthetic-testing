@@ -1,28 +1,7 @@
 format_version: 10
 pipelines:
-  stage-frontend-app-course-authoring:
-    group: st_1_group
-    label_template: ${COUNT}
-    lock_behavior: none
-    display_order: -1
-    materials:
-      unused:
-        git: https://github.com/edx/edx-gocd-synthetic-testing.git
-        type: configrepo
-        auto_updated: false
-    stages:
-      - stage_frontend-app-course-authoring_deploy_frontend:
-          jobs:
-            run_release_tests_job1:
-              timeout: 0
-              elastic_profile_id: legacy-default
-              tasks:
-                - exec:
-                    command: bash
-                    arguments: ["-c", "exit 0"]  # This will always pass
-
-  release_tests_1_pipeline:
-    group: st_1_group
+  release_tests_pipeline:
+    group: stage-frontend-app-course-authoring
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
@@ -49,7 +28,7 @@ pipelines:
       DATADOG_APP_KEY: "{{SECRET:[gocd-pipelines-sre-managed][DATADOG_APP_KEY]}}"
       DATADOG_API_KEY: "{{SECRET:[gocd-pipelines-sre-managed][DATADOG_API_KEY]}}"
     stages:
-    - release_tests_1_stage:
+    - release_tests_stage:
         fetch_materials: true
         keep_artifacts: false
         clean_workspace: false
@@ -57,34 +36,14 @@ pipelines:
           type: success
           allow_only_on_success: true
         jobs:
-          run_release_tests_job1:
+          run_release_tests_job:
             timeout: 0
             elastic_profile_id: legacy-default
             tasks:
             - exec:
                 arguments:
-                - Hello, world, from job 1
-                command: echo
+                - ./tubular/scripts/dd_synthetic_tests.py
+                - '--enable-automated-rollbacks'
+                command: python3
+                working_directory: tubular
                 run_if: passed
-#          run_release_tests_job2:
-#            timeout: 0
-#            elastic_profile_id: legacy-default
-#            tasks:
-#            - exec:
-#                arguments:
-#                - -c
-#                - echo
-#                - `/bin/bash -c pwd`
-#                command: /bin/bash
-#                run_if: passed
-#          run_release_tests_job3:
-#            timeout: 0
-#            elastic_profile_id: legacy-default
-#            tasks:
-#            - exec:
-#                arguments:
-#                - ./tubular/scripts/dd_synthetic_tests.py
-#                - '--enable-automated-rollbacks'
-#                command: python3
-#                working_directory: tubular
-#                run_if: passed
