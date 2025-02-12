@@ -85,6 +85,8 @@ pipelines:
                 arguments:
                 - ./tubular/scripts/dd_synthetic_tests.py
                 - '--enable-automated-rollbacks'
+                - '--slack-notification-channel'
+                - 'project-edxapp-deployment-future'
                 - '--timeout'
                 - '600'
                 command: python3
