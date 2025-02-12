@@ -88,6 +88,26 @@ pipelines:
                 - 'project-edxapp-deployment-future'
                 - '--timeout'
                 - '600'
+                - 'tests'
+                - |
+                  [
+                    {
+                        "description": "[Synthetics] edX Smoke Test - [Verified student] A verified student can access a graded course problem",
+                        "test_id": "tck-hrr-ubp"
+                    },
+                    {
+                        "description": "[Synthetics] edX Smoke Test - [Verified student] An enrolled verified student can access a course's landing page, course content, and course forum",
+                        "test_id": "zbz-r28-jjx"
+                    },
+                    {
+                        "description": "edX Smoke Test - [Unenrolled student] An unenrolled student cannot load a course's landing page, and sees the \"Enroll Now\" screen",
+                        "test_id": "zkx-36f-kui"
+                    },
+                    {
+                        "description": "edX Smoke Test - [Anonymous user] An anonymous user is directed to the Logistration page (authn.edx.org) when trying to access content behind log-in wall",
+                        "test_id": "6tq-u28-hwa"
+                    }
+                  ]
                 command: python3
                 working_directory: tubular
                 run_if: passed
