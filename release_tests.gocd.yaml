@@ -88,7 +88,7 @@ pipelines:
                 - 'project-edxapp-deployment-future'
                 - '--timeout'
                 - '600'
-                - 'tests'
+                - '--tests'
                 - |
                   [
                     {
