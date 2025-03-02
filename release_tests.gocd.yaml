@@ -43,7 +43,7 @@ pipelines:
           - '**/*'
         shallow_clone: true
         auto_update: true
-        branch: bszabo/frontend-app-authoring-test-gocd
+        branch: bszabo/parameterize-environment
         destination: tubular
     environment_variables:
       DATADOG_APP_KEY: "{{SECRET:[gocd-pipelines-sre-managed][DATADOG_APP_KEY]}}"
@@ -93,19 +93,27 @@ pipelines:
                   [
                     {
                         "name": "[Synthetics] edX Smoke Test - [Verified student] A verified student can access a graded course problem",
-                        "public_id": "tck-hrr-ubp"
+                        "public_id": "tck-hrr-ubp",
+                        "env": "stage",
+                        "startUrl": "https://authn.edx.org/login"
                     },
                     {
                         "name": "[Synthetics] edX Smoke Test - [Verified student] An enrolled verified student can access a course's landing page, course content, and course forum",
-                        "public_id": "zbz-r28-jjx"
+                        "public_id": "zbz-r28-jjx",
+                        "env": "stage",
+                        "startUrl": "https://authn.edx.org/login"
                     },
                     {
                         "name": "edX Smoke Test - [Unenrolled student] An unenrolled student cannot load a course's landing page, and sees the \"Enroll Now\" screen",
-                        "public_id": "zkx-36f-kui"
+                        "public_id": "zkx-36f-kui",
+                        "env": "stage",
+                        "startUrl": "https://authn.edx.org/login"
                     },
                     {
                         "name": "edX Smoke Test - [Anonymous user] An anonymous user is directed to the Logistration page (authn.edx.org) when trying to access content behind log-in wall",
-                        "public_id": "6tq-u28-hwa"
+                        "public_id": "6tq-u28-hwa",
+                        "env": "stage",
+                        "startUrl": "https://learning.stage.edx.org/course/course-v1:edx+gc_22+2024_T1"
                     }
                   ]
                 command: python3
