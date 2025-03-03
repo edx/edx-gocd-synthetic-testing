@@ -9,7 +9,8 @@ pipelines:
       unused:
         git: https://github.com/edx/edx-gocd-synthetic-testing.git
         type: configrepo
-        auto_updated: false
+        auto_update: true
+        branch: bszabo/frontend-app-authoring-test-gocd
     stages:
       - stage_frontend-app-course-authoring_deploy_frontend:
           jobs:
