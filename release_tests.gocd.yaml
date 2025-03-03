@@ -44,7 +44,7 @@ pipelines:
           - '**/*'
         shallow_clone: true
         auto_update: true
-        branch: bszabo/parameterize-environment
+        branch: bszabo/frontend-app-authoring-test-gocd
         destination: tubular
     environment_variables:
       DATADOG_APP_KEY: "{{SECRET:[gocd-pipelines-sre-managed][DATADOG_APP_KEY]}}"
@@ -58,26 +58,6 @@ pipelines:
           type: success
           allow_only_on_success: true
         jobs:
-#          run_release_tests_job1:
-#            timeout: 0
-#            elastic_profile_id: legacy-default
-#            tasks:
-#            - exec:
-#                arguments:
-#                - Hello, world, from job 1
-#                command: echo
-#                run_if: passed
-#          run_release_tests_job2:
-#            timeout: 0
-#            elastic_profile_id: legacy-default
-#            tasks:
-#            - exec:
-#                arguments:
-#                - -c
-#                - echo
-#                - `/bin/bash -c pwd`
-#                command: /bin/bash
-#                run_if: passed
           run_release_tests_job3:
             timeout: 0
             elastic_profile_id: legacy-default
@@ -85,8 +65,6 @@ pipelines:
             - exec:
                 arguments:
                 - ./tubular/scripts/dd_synthetic_tests.py
-                - '--slack-notification-channel'
-                - 'project-edxapp-deployment-future'
                 - '--timeout'
                 - '600'
                 - '--tests'
