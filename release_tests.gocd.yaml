@@ -67,7 +67,7 @@ pipelines:
                 - ./tubular/scripts/dd_synthetic_tests.py
                 - '--timeout'
                 - '600'
-                - '--environment'
+                - '--environment_name'
                 - 'stage'
                 - '--tests'
                 - |
